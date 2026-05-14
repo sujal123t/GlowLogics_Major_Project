@@ -1,0 +1,908 @@
+
+
+const courses = [
+  {
+    id: 1,
+    title: "Java Full Course",
+    instructor: "Programming with Mosh",
+    duration: "12 Hours",
+    category: "Java",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/eIrMbAQSU34/maxresdefault.jpg",
+    youtubeId: "eIrMbAQSU34",
+    description: "Complete Java programming course for beginners."
+  },
+  {
+    id: 2,
+    title: "Spring Boot Masterclass",
+    instructor: "Amigoscode",
+    duration: "10 Hours",
+    category: "Spring Boot",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/9SGDpanrc8U/maxresdefault.jpg",
+    youtubeId: "9SGDpanrc8U",
+    description: "Learn Spring Boot backend development."
+  },
+  {
+    id: 3,
+    title: "JavaScript Full Course",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "JavaScript",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/PkZNo7MFNFg/maxresdefault.jpg",
+    youtubeId: "PkZNo7MFNFg",
+    description: "Master JavaScript fundamentals and DOM manipulation."
+  },
+  {
+    id: 4,
+    title: "React JS Complete Course",
+    instructor: "freeCodeCamp",
+    duration: "11 Hours",
+    category: "React",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/bMknfKXIFA8/maxresdefault.jpg",
+    youtubeId: "bMknfKXIFA8",
+    description: "Complete React JS tutorial with real projects."
+  },
+  {
+    id: 5,
+    title: "Python Full Course",
+    instructor: "freeCodeCamp",
+    duration: "14 Hours",
+    category: "Python",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/rfscVS0vtbw/maxresdefault.jpg",
+    youtubeId: "rfscVS0vtbw",
+    description: "Learn Python programming from scratch."
+  },
+  {
+    id: 6,
+    title: "Node.js Crash Course",
+    instructor: "Traversy Media",
+    duration: "6 Hours",
+    category: "Node.js",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/fBNz5xF-Kx4/maxresdefault.jpg",
+    youtubeId: "fBNz5xF-Kx4",
+    description: "Build backend applications with Node.js."
+  },
+  {
+    id: 7,
+    title: "MongoDB Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Database",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/ofme2o29ngU/maxresdefault.jpg",
+    youtubeId: "ofme2o29ngU",
+    description: "Learn MongoDB database development."
+  },
+  {
+    id: 8,
+    title: "HTML & CSS Full Course",
+    instructor: "SuperSimpleDev",
+    duration: "7 Hours",
+    category: "Frontend",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/G3e-cpL7ofc/maxresdefault.jpg",
+    youtubeId: "G3e-cpL7ofc",
+    description: "Master HTML5 and CSS3 fundamentals."
+  },
+  {
+    id: 9,
+    title: "Docker Full Course",
+    instructor: "TechWorld with Nana",
+    duration: "4 Hours",
+    category: "DevOps",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/3c-iBn73dDE/maxresdefault.jpg",
+    youtubeId: "3c-iBn73dDE",
+    description: "Learn Docker containers and deployment."
+  },
+  {
+    id: 10,
+    title: "AWS Cloud Practitioner",
+    instructor: "freeCodeCamp",
+    duration: "13 Hours",
+    category: "Cloud",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/SOTamWNgDKc/maxresdefault.jpg",
+    youtubeId: "SOTamWNgDKc",
+    description: "AWS cloud fundamentals and certification prep."
+  },
+
+  {
+    id: 11,
+    title: "DSA in Java",
+    instructor: "Kunal Kushwaha",
+    duration: "18 Hours",
+    category: "DSA",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/rZ41y93P2Qo/maxresdefault.jpg",
+    youtubeId: "rZ41y93P2Qo",
+    description: "Master Data Structures and Algorithms in Java."
+  },
+  {
+    id: 12,
+    title: "System Design Basics",
+    instructor: "Gaurav Sen",
+    duration: "9 Hours",
+    category: "System Design",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/xpDnVSmNFX0/maxresdefault.jpg",
+    youtubeId: "xpDnVSmNFX0",
+    description: "Understand scalable software architecture."
+  },
+  {
+    id: 13,
+    title: "Git and GitHub Course",
+    instructor: "freeCodeCamp",
+    duration: "3 Hours",
+    category: "Tools",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/RGOj5yH7evk/maxresdefault.jpg",
+    youtubeId: "RGOj5yH7evk",
+    description: "Version control using Git and GitHub."
+  },
+  {
+    id: 14,
+    title: "Machine Learning Course",
+    instructor: "freeCodeCamp",
+    duration: "10 Hours",
+    category: "AI",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/i_LwzRVP7bg/maxresdefault.jpg",
+    youtubeId: "i_LwzRVP7bg",
+    description: "Machine learning concepts and algorithms."
+  },
+  {
+    id: 15,
+    title: "Android Development",
+    instructor: "freeCodeCamp",
+    duration: "12 Hours",
+    category: "Mobile",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/fis26HvvDII/maxresdefault.jpg",
+    youtubeId: "fis26HvvDII",
+    description: "Build Android apps using Kotlin."
+  },
+  {
+    id: 16,
+    title: "Kubernetes Course",
+    instructor: "TechWorld with Nana",
+    duration: "6 Hours",
+    category: "DevOps",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/X48VuDVv0do/maxresdefault.jpg",
+    youtubeId: "X48VuDVv0do",
+    description: "Learn Kubernetes orchestration."
+  },
+  {
+    id: 17,
+    title: "Flutter Full Course",
+    instructor: "freeCodeCamp",
+    duration: "9 Hours",
+    category: "Mobile",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/VPvVD8t02U8/maxresdefault.jpg",
+    youtubeId: "VPvVD8t02U8",
+    description: "Cross-platform app development with Flutter."
+  },
+  {
+    id: 18,
+    title: "TypeScript Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "JavaScript",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/30LWjhZzg50/maxresdefault.jpg",
+    youtubeId: "30LWjhZzg50",
+    description: "Learn TypeScript for scalable applications."
+  },
+  {
+    id: 19,
+    title: "Next.js Full Course",
+    instructor: "JavaScript Mastery",
+    duration: "8 Hours",
+    category: "React",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/wm5gMKuwSYk/maxresdefault.jpg",
+    youtubeId: "wm5gMKuwSYk",
+    description: "Build production apps with Next.js."
+  },
+  {
+    id: 20,
+    title: "SQL Complete Course",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "Database",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/HXV3zeQKqGY/maxresdefault.jpg",
+    youtubeId: "HXV3zeQKqGY",
+    description: "Master SQL queries and relational databases."
+  },
+
+  {
+    id: 21,
+    title: "C Programming Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Programming",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/KJgsSFOSQv0/maxresdefault.jpg",
+    youtubeId: "KJgsSFOSQv0",
+    description: "Learn C programming fundamentals."
+  },
+  {
+    id: 22,
+    title: "C++ Full Course",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "Programming",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/vLnPwxZdW4Y/maxresdefault.jpg",
+    youtubeId: "vLnPwxZdW4Y",
+    description: "Object-oriented programming with C++."
+  },
+  {
+    id: 23,
+    title: "Cyber Security Basics",
+    instructor: "Simplilearn",
+    duration: "6 Hours",
+    category: "Security",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/inWWhr5tnEA/maxresdefault.jpg",
+    youtubeId: "inWWhr5tnEA",
+    description: "Introduction to cyber security concepts."
+  },
+  {
+    id: 24,
+    title: "Linux Full Course",
+    instructor: "freeCodeCamp",
+    duration: "7 Hours",
+    category: "Operating Systems",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/sWbUDq4S6Y8/maxresdefault.jpg",
+    youtubeId: "sWbUDq4S6Y8",
+    description: "Master Linux commands and administration."
+  },
+  {
+    id: 25,
+    title: "Django Crash Course",
+    instructor: "Traversy Media",
+    duration: "5 Hours",
+    category: "Python",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/e1IyzVyrLSU/maxresdefault.jpg",
+    youtubeId: "e1IyzVyrLSU",
+    description: "Backend web development with Django."
+  },
+  {
+    id: 26,
+    title: "Tailwind CSS Course",
+    instructor: "freeCodeCamp",
+    duration: "3 Hours",
+    category: "Frontend",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/lCxcTsOHrjo/maxresdefault.jpg",
+    youtubeId: "lCxcTsOHrjo",
+    description: "Modern utility-first CSS framework."
+  },
+  {
+    id: 27,
+    title: "Express JS Tutorial",
+    instructor: "Traversy Media",
+    duration: "4 Hours",
+    category: "Node.js",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/L72fhGm1tfE/maxresdefault.jpg",
+    youtubeId: "L72fhGm1tfE",
+    description: "Build REST APIs using Express.js."
+  },
+  {
+    id: 28,
+    title: "GraphQL Course",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Backend",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/yjo4a9AvUnA/maxresdefault.jpg",
+    youtubeId: "yjo4a9AvUnA",
+    description: "API development with GraphQL."
+  },
+  {
+    id: 29,
+    title: "Firebase Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "Cloud",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/9kRgVxULbag/maxresdefault.jpg",
+    youtubeId: "9kRgVxULbag",
+    description: "Realtime apps using Firebase."
+  },
+  {
+    id: 30,
+    title: "Redis Crash Course",
+    instructor: "Traversy Media",
+    duration: "2 Hours",
+    category: "Database",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/Hbt56gFj998/maxresdefault.jpg",
+    youtubeId: "Hbt56gFj998",
+    description: "Learn Redis caching and storage."
+  },
+
+  {
+    id: 31,
+    title: "Data Science Full Course",
+    instructor: "freeCodeCamp",
+    duration: "11 Hours",
+    category: "AI",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/ua-CiDNNj30/maxresdefault.jpg",
+    youtubeId: "ua-CiDNNj30",
+    description: "Data science concepts and projects."
+  },
+  {
+    id: 32,
+    title: "Artificial Intelligence Basics",
+    instructor: "Simplilearn",
+    duration: "6 Hours",
+    category: "AI",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/JMUxmLyrhSk/maxresdefault.jpg",
+    youtubeId: "JMUxmLyrhSk",
+    description: "Understand AI fundamentals and applications."
+  },
+  {
+    id: 33,
+    title: "Spring Security Tutorial",
+    instructor: "Amigoscode",
+    duration: "5 Hours",
+    category: "Spring Boot",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/her_7pa0vrg/maxresdefault.jpg",
+    youtubeId: "her_7pa0vrg",
+    description: "Secure Spring Boot applications."
+  },
+  {
+    id: 34,
+    title: "Hibernate & JPA",
+    instructor: "Java Brains",
+    duration: "7 Hours",
+    category: "Java",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/3J4XH7ZxjvM/maxresdefault.jpg",
+    youtubeId: "3J4XH7ZxjvM",
+    description: "ORM development using Hibernate and JPA."
+  },
+  {
+    id: 35,
+    title: "Microservices with Spring Boot",
+    instructor: "Amigoscode",
+    duration: "9 Hours",
+    category: "Spring Boot",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/rv4LlmLmVWk/maxresdefault.jpg",
+    youtubeId: "rv4LlmLmVWk",
+    description: "Build scalable microservices architecture."
+  },
+
+  {
+    id: 36,
+    title: "Angular Full Course",
+    instructor: "freeCodeCamp",
+    duration: "10 Hours",
+    category: "Frontend",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/3qBXWUpoPHo/maxresdefault.jpg",
+    youtubeId: "3qBXWUpoPHo",
+    description: "Frontend development using Angular."
+  },
+  {
+    id: 37,
+    title: "Vue.js Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Frontend",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/qZXt1Aom3Cs/maxresdefault.jpg",
+    youtubeId: "qZXt1Aom3Cs",
+    description: "Build modern apps with Vue.js."
+  },
+  {
+    id: 38,
+    title: "Bootstrap Full Course",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "Frontend",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/-qfEOE4vtxE/maxresdefault.jpg",
+    youtubeId: "-qfEOE4vtxE",
+    description: "Responsive web design using Bootstrap."
+  },
+  {
+    id: 39,
+    title: "REST API Development",
+    instructor: "CodeWithHarry",
+    duration: "5 Hours",
+    category: "Backend",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/qwfE7fSVaZM/maxresdefault.jpg",
+    youtubeId: "qwfE7fSVaZM",
+    description: "Build scalable REST APIs."
+  },
+  {
+    id: 40,
+    title: "Full Stack MERN Project",
+    instructor: "JavaScript Mastery",
+    duration: "12 Hours",
+    category: "Full Stack",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/ngc9gnGgUdA/maxresdefault.jpg",
+    youtubeId: "ngc9gnGgUdA",
+    description: "Complete MERN stack project development."
+  },
+
+  {
+    id: 41,
+    title: "React Native Course",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "Mobile",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/0-S5a0eXPoc/maxresdefault.jpg",
+    youtubeId: "0-S5a0eXPoc",
+    description: "Build mobile apps using React Native."
+  },
+  {
+    id: 42,
+    title: "Ethical Hacking Basics",
+    instructor: "Simplilearn",
+    duration: "5 Hours",
+    category: "Security",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/3Kq1MIfTWCE/maxresdefault.jpg",
+    youtubeId: "3Kq1MIfTWCE",
+    description: "Introduction to ethical hacking concepts."
+  },
+  {
+    id: 43,
+    title: "Computer Networks",
+    instructor: "Gate Smashers",
+    duration: "15 Hours",
+    category: "Networking",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/IPvYjXCsTg8/maxresdefault.jpg",
+    youtubeId: "IPvYjXCsTg8",
+    description: "Networking fundamentals and protocols."
+  },
+  {
+    id: 44,
+    title: "Operating Systems",
+    instructor: "Gate Smashers",
+    duration: "14 Hours",
+    category: "Operating Systems",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/3obEP8eLsCw/maxresdefault.jpg",
+    youtubeId: "3obEP8eLsCw",
+    description: "Understand operating system concepts."
+  },
+  {
+    id: 45,
+    title: "Compiler Design",
+    instructor: "Neso Academy",
+    duration: "9 Hours",
+    category: "Computer Science",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/V5bofuZ5s0Q/maxresdefault.jpg",
+    youtubeId: "V5bofuZ5s0Q",
+    description: "Learn compiler design concepts."
+  },
+
+  {
+    id: 46,
+    title: "Computer Architecture",
+    instructor: "Neso Academy",
+    duration: "10 Hours",
+    category: "Computer Science",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/zLP_X4wyHbY/maxresdefault.jpg",
+    youtubeId: "zLP_X4wyHbY",
+    description: "Computer architecture and processor concepts."
+  },
+  {
+    id: 47,
+    title: "DBMS Full Course",
+    instructor: "Gate Smashers",
+    duration: "13 Hours",
+    category: "Database",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/kBdlM6hNDAE/maxresdefault.jpg",
+    youtubeId: "kBdlM6hNDAE",
+    description: "Database management system complete tutorial."
+  },
+  {
+    id: 48,
+    title: "Aptitude Preparation",
+    instructor: "TalentSprint",
+    duration: "7 Hours",
+    category: "Placement",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/F8E4x-8Yh9s/maxresdefault.jpg",
+    youtubeId: "F8E4x-8Yh9s",
+    description: "Placement aptitude preparation course."
+  },
+  {
+    id: 49,
+    title: "Interview Preparation",
+    instructor: "Apna College",
+    duration: "4 Hours",
+    category: "Placement",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/oFnIe-RpkE4/maxresdefault.jpg",
+    youtubeId: "oFnIe-RpkE4",
+    description: "Technical interview preparation strategies."
+  },
+  {
+    id: 50,
+    title: "OpenCV Course",
+    instructor: "freeCodeCamp",
+    duration: "6 Hours",
+    category: "AI",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/oXlwWbU8l2o/maxresdefault.jpg",
+    youtubeId: "oXlwWbU8l2o",
+    description: "Computer vision using OpenCV."
+  },
+
+  {
+    id: 51,
+    title: "TensorFlow Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "AI",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/tPYj3fFJGjk/maxresdefault.jpg",
+    youtubeId: "tPYj3fFJGjk",
+    description: "Deep learning using TensorFlow."
+  },
+  {
+    id: 52,
+    title: "Blockchain Basics",
+    instructor: "Simplilearn",
+    duration: "5 Hours",
+    category: "Blockchain",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/SSo_EIwHSd4/maxresdefault.jpg",
+    youtubeId: "SSo_EIwHSd4",
+    description: "Introduction to blockchain technology."
+  },
+  {
+    id: 53,
+    title: "Solidity Smart Contracts",
+    instructor: "freeCodeCamp",
+    duration: "16 Hours",
+    category: "Blockchain",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/M576WGiDBdQ/maxresdefault.jpg",
+    youtubeId: "M576WGiDBdQ",
+    description: "Build smart contracts with Solidity."
+  },
+  {
+    id: 54,
+    title: "Power BI Course",
+    instructor: "Simplilearn",
+    duration: "7 Hours",
+    category: "Analytics",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/AGrl-H87pRU/maxresdefault.jpg",
+    youtubeId: "AGrl-H87pRU",
+    description: "Data visualization using Power BI."
+  },
+  {
+    id: 55,
+    title: "Excel for Data Analysis",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Analytics",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/Vl0H-qTclOg/maxresdefault.jpg",
+    youtubeId: "Vl0H-qTclOg",
+    description: "Excel techniques for analytics and reporting."
+  },
+
+  {
+    id: 56,
+    title: "UI UX Design Basics",
+    instructor: "DesignCourse",
+    duration: "6 Hours",
+    category: "Design",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/c9Wg6Cb_YlU/maxresdefault.jpg",
+    youtubeId: "c9Wg6Cb_YlU",
+    description: "Learn UI/UX design fundamentals."
+  },
+  {
+    id: 57,
+    title: "Figma Full Course",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "Design",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/jwCmIBJ8Jtc/maxresdefault.jpg",
+    youtubeId: "jwCmIBJ8Jtc",
+    description: "UI design using Figma."
+  },
+  {
+    id: 58,
+    title: "SEO Masterclass",
+    instructor: "Simplilearn",
+    duration: "5 Hours",
+    category: "Marketing",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/DvwS7cV9GmQ/maxresdefault.jpg",
+    youtubeId: "DvwS7cV9GmQ",
+    description: "Search engine optimization strategies."
+  },
+  {
+    id: 59,
+    title: "Digital Marketing Course",
+    instructor: "Simplilearn",
+    duration: "8 Hours",
+    category: "Marketing",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/nU-IIXBWlS4/maxresdefault.jpg",
+    youtubeId: "nU-IIXBWlS4",
+    description: "Complete digital marketing tutorial."
+  },
+  {
+    id: 60,
+    title: "Prompt Engineering",
+    instructor: "DeepLearningAI",
+    duration: "3 Hours",
+    category: "AI",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/dOxUroR57xs/maxresdefault.jpg",
+    youtubeId: "dOxUroR57xs",
+    description: "Learn prompt engineering for AI systems."
+  },
+
+  {
+    id: 61,
+    title: "LangChain Crash Course",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "AI",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/lG7Uxts9SXs/maxresdefault.jpg",
+    youtubeId: "lG7Uxts9SXs",
+    description: "Build LLM applications with LangChain."
+  },
+  {
+    id: 62,
+    title: "ChatGPT API Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "3 Hours",
+    category: "AI",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/uRQH2CFvedY/maxresdefault.jpg",
+    youtubeId: "uRQH2CFvedY",
+    description: "Integrate OpenAI APIs into applications."
+  },
+  {
+    id: 63,
+    title: "Jenkins CI/CD",
+    instructor: "TechWorld with Nana",
+    duration: "5 Hours",
+    category: "DevOps",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/6YZvp2GwT0A/maxresdefault.jpg",
+    youtubeId: "6YZvp2GwT0A",
+    description: "CI/CD pipelines using Jenkins."
+  },
+  {
+    id: 64,
+    title: "Terraform Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "4 Hours",
+    category: "Cloud",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/SLB_c_ayRMo/maxresdefault.jpg",
+    youtubeId: "SLB_c_ayRMo",
+    description: "Infrastructure as code using Terraform."
+  },
+  {
+    id: 65,
+    title: "Azure Fundamentals",
+    instructor: "freeCodeCamp",
+    duration: "9 Hours",
+    category: "Cloud",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/NKEFWyqJ5XA/maxresdefault.jpg",
+    youtubeId: "NKEFWyqJ5XA",
+    description: "Microsoft Azure cloud basics."
+  },
+
+  {
+    id: 66,
+    title: "Google Cloud Platform",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "Cloud",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/EN4fEbcFZ_E/maxresdefault.jpg",
+    youtubeId: "EN4fEbcFZ_E",
+    description: "Google Cloud services and deployment."
+  },
+  {
+    id: 67,
+    title: "Rust Programming",
+    instructor: "freeCodeCamp",
+    duration: "6 Hours",
+    category: "Programming",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/BpPEoZW5IiY/maxresdefault.jpg",
+    youtubeId: "BpPEoZW5IiY",
+    description: "Systems programming using Rust."
+  },
+  {
+    id: 68,
+    title: "GoLang Tutorial",
+    instructor: "freeCodeCamp",
+    duration: "6 Hours",
+    category: "Programming",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/YS4e4q9oBaU/maxresdefault.jpg",
+    youtubeId: "YS4e4q9oBaU",
+    description: "Backend development using Go."
+  },
+  {
+    id: 69,
+    title: "Swift iOS Development",
+    instructor: "freeCodeCamp",
+    duration: "9 Hours",
+    category: "Mobile",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/comQ1-x2a1Q/maxresdefault.jpg",
+    youtubeId: "comQ1-x2a1Q",
+    description: "Build iOS apps using Swift."
+  },
+  {
+    id: 70,
+    title: "Unity Game Development",
+    instructor: "freeCodeCamp",
+    duration: "10 Hours",
+    category: "Game Development",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/gB1F9G0JXOo/maxresdefault.jpg",
+    youtubeId: "gB1F9G0JXOo",
+    description: "Game development using Unity engine."
+  },
+
+  {
+    id: 71,
+    title: "Unreal Engine Basics",
+    instructor: "freeCodeCamp",
+    duration: "7 Hours",
+    category: "Game Development",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/k-zMkzmduqI/maxresdefault.jpg",
+    youtubeId: "k-zMkzmduqI",
+    description: "Introduction to Unreal Engine."
+  },
+  {
+    id: 72,
+    title: "Blender 3D Course",
+    instructor: "Blender Guru",
+    duration: "12 Hours",
+    category: "Design",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/nIoXOplUvAw/maxresdefault.jpg",
+    youtubeId: "nIoXOplUvAw",
+    description: "3D modeling and rendering using Blender."
+  },
+  {
+    id: 73,
+    title: "Photoshop Tutorial",
+    instructor: "Piximperfect",
+    duration: "5 Hours",
+    category: "Design",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/IyR_uYsRdPs/maxresdefault.jpg",
+    youtubeId: "IyR_uYsRdPs",
+    description: "Learn Adobe Photoshop editing skills."
+  },
+  {
+    id: 74,
+    title: "Canva Design Masterclass",
+    instructor: "Canva",
+    duration: "3 Hours",
+    category: "Design",
+    level: "Beginner",
+    thumbnail: "https://img.youtube.com/vi/_4oD8lB7c0c/maxresdefault.jpg",
+    youtubeId: "_4oD8lB7c0c",
+    description: "Graphic designing using Canva."
+  },
+  {
+    id: 75,
+    title: "Excel VBA Automation",
+    instructor: "Leila Gharani",
+    duration: "6 Hours",
+    category: "Automation",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/G05TrN7nt6k/maxresdefault.jpg",
+    youtubeId: "G05TrN7nt6k",
+    description: "Automate Excel workflows using VBA."
+  },
+
+  {
+    id: 76,
+    title: "SAP Basics",
+    instructor: "Simplilearn",
+    duration: "5 Hours",
+    category: "Enterprise",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/9t4ZHSbglVQ/maxresdefault.jpg",
+    youtubeId: "9t4ZHSbglVQ",
+    description: "Introduction to SAP ERP systems."
+  },
+  {
+    id: 77,
+    title: "Oracle SQL Developer",
+    instructor: "freeCodeCamp",
+    duration: "5 Hours",
+    category: "Database",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/7S_tz1z_5bA/maxresdefault.jpg",
+    youtubeId: "7S_tz1z_5bA",
+    description: "Oracle database and SQL development."
+  },
+  {
+    id: 78,
+    title: "Networking with Cisco",
+    instructor: "freeCodeCamp",
+    duration: "8 Hours",
+    category: "Networking",
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/QKfk7YFILws/maxresdefault.jpg",
+    youtubeId: "QKfk7YFILws",
+    description: "Cisco networking and routing concepts."
+  },
+  {
+    id: 79,
+    title: "Ethical AI Systems",
+    instructor: "DeepLearningAI",
+    duration: "4 Hours",
+    category: "AI",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/aircAruvnKk/maxresdefault.jpg",
+    youtubeId: "aircAruvnKk",
+    description: "Responsible and ethical AI practices."
+  },
+  {
+    id: 80,
+    title: "Full Stack Java Project",
+    instructor: "Telusko",
+    duration: "14 Hours",
+    category: "Full Stack",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/4XTsAAHW_Tc/maxresdefault.jpg",
+    youtubeId: "4XTsAAHW_Tc",
+    description: "Build enterprise Java full stack applications."
+  },
+  {
+    id: 81,
+    title: "Software Engineering Masterclass",
+    instructor: "freeCodeCamp",
+    duration: "15 Hours",
+    category: "Software Engineering",
+    level: "Advanced",
+    thumbnail: "https://img.youtube.com/vi/O753uuutqH8/maxresdefault.jpg",
+    youtubeId: "O753uuutqH8",
+    description: "Complete software engineering concepts and roadmap."
+  }
+];
+

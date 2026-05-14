@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Best Free Courses</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="dashboard.html">My Courses</a></li>
+            <li><button id="themeToggle">🌙</button></li>
+        </ul>
+    </nav>
+</header>
+
+<section style="padding: 60px 20px; max-width: 800px; margin: auto;">
+    <div style="background: var(--bg-secondary); padding: 50px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 15px 35px rgba(0,0,0,0.15); backdrop-filter: blur(12px);">
+        <h1 style="text-align: center; margin-bottom: 15px; color: var(--text-primary); font-size: 2.5rem;">My Account Settings</h1>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap;">
+            <div style="text-align: center; padding: 30px; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color); flex: 1; min-width: 200px;">
+                <div style="font-size: 3.5rem;">🔥</div>
+                <h2 id="profileStreak" style="color: #ef4444; font-size: 2.5rem; margin: 10px 0;">0 Days</h2>
+                <p style="color: var(--text-secondary); font-weight: 500; font-size: 1.1rem;">Current Login Streak</p>
+            </div>
+            <div style="text-align: center; padding: 30px; background: var(--bg-primary); border-radius: 12px; border: 1px solid var(--border-color); flex: 1; min-width: 200px;">
+                <div style="font-size: 3.5rem;">🏆</div>
+                <h2 id="profilePoints" style="color: #facc15; font-size: 2.5rem; margin: 10px 0;">0 Points</h2>
+                <p style="color: var(--text-secondary); font-weight: 500; font-size: 1.1rem;">Total Gamification Score</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.5rem;">My Badges</h3>
+            <div id="badgesContainer" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+            <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.5rem;">Learning Analytics</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                <div style="background: var(--bg-primary); padding: 25px 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent); font-size: 2.5rem; margin-bottom: 5px;" id="statEnrolled">0</h4>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Enrolled</span>
+                </div>
+                <div style="background: var(--bg-primary); padding: 25px 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color);">
+                    <h4 style="color: #10b981; font-size: 2.5rem; margin-bottom: 5px;" id="statCompleted">0</h4>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Completed</span>
+                </div>
+                <div style="background: var(--bg-primary); padding: 25px 20px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color);">
+                    <h4 style="color: #facc15; font-size: 2.5rem; margin-bottom: 5px;" id="statHours">0</h4>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Total Hours</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="profileForm" style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-weight: 600; color: var(--text-secondary);">Email Address (Locked)</label>
+                <input type="email" id="profileEmail" disabled style="padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; background: rgba(0,0,0,0.05); color: var(--text-secondary); cursor: not-allowed;">
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-weight: 600; color: var(--text-secondary);">Full Name</label>
+                <input type="text" id="profileName" required style="padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1.05rem;">
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-weight: 600; color: var(--text-secondary);">Phone Number</label>
+                <input type="tel" id="profilePhone" style="padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1.05rem;">
+            </div>
+            
+            <button type="submit" style="background: linear-gradient(135deg, var(--accent), #8b5cf6); color: white; border: none; padding: 16px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; box-shadow: 0 4px 15px var(--accent-glow);">Save Changes</button>
+        </form>
+        <button onclick="logout()" style="width: 100%; background: rgba(220, 53, 69, 0.1); color: #ef4444; border: 1px solid #ef4444; padding: 16px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s;">Sign Out</button>
+    </div>
+</section>
+
+<script src="js/profile.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Course Details</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Best Free Courses
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="courses.html">Courses</a></li>
+
+            <li><a href="dashboard.html">My Courses</a></li>
+            <li>
+                <button id="themeToggle">
+                    🌙
+                </button>
+            </li>
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="course-details-container">
+
+    <div class="video-section">
+
+        <!-- YouTube IFrame API replaces this div -->
+        <div id="videoPlayer" style="width: 100%; height: 500px; border-radius: 20px;"></div>
+
+    </div>
+
+    <div class="details-section">
+
+        <h1 id="courseTitle"></h1>
+
+        <p id="courseDescription"></p>
+
+        <div class="course-meta">
+
+            <span id="courseInstructor"></span>
+
+            <span id="courseDuration"></span>
+
+            <span id="courseLevel"></span>
+
+        </div>
+
+        <button id="enrollBtn">
+            Enroll Now
+        </button>
+
+        <button onclick="toggleCodeEditor()" style="width: 100%; margin-top: 15px; padding: 15px; background: #0056d2; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem;">
+            💻 Open Interactive Code Sandbox
+        </button>
+        <div id="codeEditorContainer" style="display: none; margin-top: 15px; border-radius: 12px; overflow: hidden; height: 500px;">
+            <iframe src="https://onecompiler.com/embed/" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+
+        <!-- Coursera Style Tabs -->
+        <div class="course-tabs" style="display: flex; gap: 30px; border-bottom: 1px solid var(--border-color); margin-top: 50px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 5px;">
+            <button class="tab-btn active" onclick="switchTab('lessonsTab')">Syllabus</button>
+            <button class="tab-btn" onclick="switchTab('notesTab')">My Notes</button>
+            <button class="tab-btn" onclick="switchTab('qaTab')">Discussion Board</button>
+            <button class="tab-btn" onclick="switchTab('reviewsTab')">Reviews</button>
+        </div>
+
+<div id="lessonsTab" class="tab-content" style="display: block;">
+    <h2>
+        Course Syllabus
+    </h2>
+
+    <div id="lessonsContainer"></div>
+
+</div>
+
+<div id="notesTab" class="tab-content" style="display: none; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+    <h2>My Video Notes</h2>
+    <div style="display: flex; gap: 10px; margin-top: 15px;"><input type="text" id="noteInput" placeholder="Type a note here..." style="flex-grow: 1; padding: 10px; border-radius: 8px; border: none;"><button onclick="saveNote()" style="padding: 10px 20px; border-radius: 8px;">Save Note @ Current Time</button></div>
+    <div id="notesContainer" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;"></div>
+</div>
+
+<div id="qaTab" class="tab-content" style="display: none; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+    <h2>Community Q&A</h2>
+    <p style="color: #cbd5e1; margin-bottom: 15px;">Stuck? Ask the community!</p>
+    <div style="display: flex; gap: 10px;"><input type="text" id="qaInput" placeholder="Ask a question..." style="flex-grow: 1; padding: 10px; border-radius: 8px; border: none;"><button onclick="postQuestion()" style="padding: 10px 20px; border-radius: 8px;">Post</button></div>
+    <div id="qaContainer" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;"></div>
+</div>
+
+<div id="reviewsTab" class="tab-content" style="display: none; padding: 20px; background: var(--bg-secondary); border-radius: 10px; border: 1px solid var(--border-color);">
+    <h2>Student Ratings & Reviews</h2>
+    <div id="courseRatingDisplay" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffc107;">Loading ratings...</div>
+    <div id="submitReviewContainer"></div>
+    <div id="reviewsList" style="margin-top: 20px;"></div>
+</div>
+
+    </div>
+
+</section>
+
+<script src="js/courses-data.js"></script>
+<script src="js/course-details.js"></script>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="certificate-container">
+
+    <div class="certificate">
+
+        <h1>
+            Certificate of Completion
+        </h1>
+
+        <p>
+            This certificate is proudly awarded to
+        </p>
+
+        <h2 id="studentName"></h2>
+
+        <p>
+            for successfully completing
+        </p>
+
+        <h3 id="courseName"></h3>
+
+        <div class="certificate-footer">
+
+            <span>
+                Best Free Courses
+            </span>
+
+            <span id="completionDate"></span>
+
+        </div>
+
+        <p style="text-align: center; margin-top: 30px; font-size: 0.85rem; color: #777;">
+            Certificate Verification ID: <strong id="certificateId" style="color: #333;"></strong>
+        </p>
+
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+        <button onclick="downloadCertificate()">
+            Download Certificate
+        </button>
+        
+        <button id="emailCertBtn" onclick="emailCertificate()" style="background-color: #28a745;">
+            Email to Me
+        </button>
+        
+        <button onclick="shareOnLinkedIn()" style="background-color: #0077b5;">
+            Share on LinkedIn
+        </button>
+    </div>
+
+</div>
+
+<script src="js/certificate.js"></script>
+
+<script src="js/app.js"></script>
+</body>
+</html>

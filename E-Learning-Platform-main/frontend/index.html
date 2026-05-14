@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Free Courses</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content {
+        animation: fadeInUp 1s ease-out forwards;
+    }
+    .features-section > div > div {
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .features-section > div > div:nth-child(1) { animation-delay: 0.2s; }
+    .features-section > div > div:nth-child(2) { animation-delay: 0.4s; }
+    .features-section > div > div:nth-child(3) { animation-delay: 0.6s; }
+    .category-pill:hover {
+        background: #0056d2 !important;
+        color: white !important;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,86,210,0.3);
+    }
+</style>
+</head>
+<body>
+<header>
+<nav class="navbar">
+<div class="logo">Best Free Courses</div>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="courses.html">Courses</a></li>
+<li><a href="dashboard.html">My Courses</a></li>
+<li><a href="login.html">Login</a></li>
+<li>
+    <button id="themeToggle">
+        🌙
+    </button>
+</li>
+</ul>
+</nav>
+</header>
+
+<section class="hero" style="background: #ebf3ff; text-align: left; padding: 100px 60px; display: flex; align-items: center; border-bottom: 1px solid var(--border-color);">
+<div class="hero-content" style="max-width: 700px; animation: none;">
+<h1 style="font-size: 4.5rem; margin-bottom: 20px; font-weight: 800; color: #1f2432; line-height: 1.1;">Learn without limits</h1>
+<p style="font-size: 1.25rem; margin: 20px 0; line-height: 1.6; color: #373a3c;">
+Start, switch, or advance your career with more than 200 courses, Professional Certificates, and degrees from world-class instructors.
+</p>
+<a href="courses.html" class="hero-btn" style="background: #0056d2; color: white; padding: 16px 32px; border-radius: 4px; font-weight: 600; font-size: 1.1rem; text-decoration: none; display: inline-block; margin-top: 20px;">
+Join for Free
+</a>
+</div>
+</section>
+
+<section style="background: var(--bg-secondary); padding: 50px 20px; border-bottom: 1px solid var(--border-color);">
+    <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center;">
+        <div style="margin: 15px;">
+            <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 5px; font-weight: 800;">200+</h2>
+            <p style="color: var(--text-secondary); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem;">Premium Courses</p>
+        </div>
+        <div style="margin: 15px;">
+            <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 5px; font-weight: 800;">10k+</h2>
+            <p style="color: var(--text-secondary); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem;">Active Learners</p>
+        </div>
+        <div style="margin: 15px;">
+            <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 5px; font-weight: 800;">100%</h2>
+            <p style="color: var(--text-secondary); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem;">Free Forever</p>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 70px 20px; background: var(--bg-primary); text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 35px; color: var(--text-primary); font-weight: 800;">Explore Top Categories</h2>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 900px; margin: 0 auto;">
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">💻 Web Development</a>
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">🤖 Artificial Intelligence</a>
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">☁️ Cloud Computing</a>
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">📱 Mobile Apps</a>
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">🔒 Cybersecurity</a>
+        <a href="courses.html" class="category-pill" style="padding: 15px 25px; background: var(--bg-secondary); color: var(--text-primary); border-radius: 4px; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid var(--border-color);">📊 Data Science</a>
+    </div>
+</section>
+
+<section class="features-section" style="padding: 80px 20px; background: var(--bg-primary); text-align: center; border-top: 1px solid var(--border-color);">
+    <h2 style="font-size: 2.5rem; margin-bottom: 50px; color: var(--text-primary); font-weight: 800;">Why Learn With Us?</h2>
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <div style="max-width: 320px; padding: 40px 20px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">👨‍🏫</div>
+            <h3 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;">World-Class Instructors</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6;">Learn directly from top tech creators, industry leaders, and senior software engineers.</p>
+        </div>
+        <div style="max-width: 320px; padding: 40px 20px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">🎮</div>
+            <h3 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;">Interactive Modules</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6;">Track your progress step-by-step with interactive modules, coding exercises, and projects.</p>
+        </div>
+        <div style="max-width: 320px; padding: 40px 20px; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 15px;">📜</div>
+            <h3 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;">Verifiable Certificates</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6;">Earn a professional certificate of completion to showcase on your resume and LinkedIn.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+
+<div class="footer-links">
+<a href="https://github.com/MIKEY-44" target="_blank">
+GitHub
+</a>
+<a href="https://www.linkedin.com/in/omkar-kurdekar-1020b5254/"
+target="_blank">
+LinkedIn
+</a>
+</div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

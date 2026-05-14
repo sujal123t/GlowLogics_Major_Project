@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Certificate</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">Best Free Courses</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section style="padding: 60px 20px; max-width: 600px; margin: auto; text-align: center;">
+    <div style="background: var(--bg-secondary); padding: 40px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
+        <h1 style="margin-bottom: 20px; font-size: 2.5rem;">Verify a Certificate</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 30px;">Enter the unique Certificate ID below to verify its authenticity.</p>
+        
+        <input type="text" id="certInput" placeholder="e.g. CERT-A1B2C3D4E5" style="width: 100%; padding: 15px; border-radius: 8px; border: none; font-size: 1.1rem; text-align: center; margin-bottom: 20px;">
+        <button onclick="verifyCert()" style="background: #38bdf8; color: #0f172a; padding: 15px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; width: 100%;">Verify Now</button>
+        
+        <div id="verifyResult" style="margin-top: 30px; font-size: 1.2rem;"></div>
+    </div>
+</section>
+
+<script>
+    async function verifyCert() {
+        const certId = document.getElementById("certInput").value.trim().toUpperCase();
+        const resultDiv = document.getElementById("verifyResult");
+        if (!certId) return;
+        
+        resultDiv.innerHTML = "Checking database...";
+        try {
+            const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/enrollments/verify/${certId}`);
+            const data = await res.json();
+            if (data.valid) {
+                resultDiv.innerHTML = `<span style="color: #28a745;">✅ <strong>Verified!</strong></span><br><br>Awarded to: <strong>${data.studentName}</strong><br>For: <strong>${data.courseName}</strong>`;
+            } else {
+                resultDiv.innerHTML = `<span style="color: #dc3545;">❌ <strong>Invalid Certificate ID.</strong> We could not find a match in our system.</span>`;
+            }
+        } catch(e) { resultDiv.innerHTML = "Server offline."; }
+    }
+</script>
+</body>
+</html>
+
+
+

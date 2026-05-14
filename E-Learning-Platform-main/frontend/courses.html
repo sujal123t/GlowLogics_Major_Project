@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Best Free Courses
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="dashboard.html">My Courses</a></li>
+            <li>
+                <button id="themeToggle">
+                    🌙
+                </button>
+            </li>
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="courses-section">
+
+    <h1 class="section-title">
+        Explore Top Free Courses
+    </h1>
+
+    <div class="filters-container" style="display: flex; gap: 15px; max-width: 900px; margin: 0 auto 40px; flex-wrap: wrap; justify-content: center;">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search courses..."
+        class="search-bar" style="margin: 0; flex-grow: 1; max-width: 300px;"
+    >
+    <select id="categoryFilter"
+        class="search-bar" style="margin: 0; width: auto;">
+
+    <option value="">
+        All Categories
+    </option>
+
+    <option value="Java">
+        Java
+    </option>
+
+    <option value="Spring Boot">
+        Spring Boot
+    </option>
+
+    <option value="JavaScript">
+        JavaScript
+    </option>
+
+    <option value="React">
+        React
+    </option>
+
+    <option value="Full Stack">
+        Full Stack
+    </option>
+
+</select>
+    <select id="levelFilter" class="search-bar" style="margin: 0; width: auto;">
+        <option value="">All Levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+        <option value="Expert">Expert</option>
+    </select>
+    <select id="sortFilter" class="search-bar" style="margin: 0; width: auto;">
+        <option value="">Sort By</option>
+        <option value="duration-asc">Duration (Short to Long)</option>
+        <option value="duration-desc">Duration (Long to Short)</option>
+        <option value="title-asc">Name (A-Z)</option>
+    </select>
+    </div>
+
+    <div class="course-grid" id="courseGrid"></div>
+
+    <div class="pagination" id="paginationContainer"></div>
+
+</section>
+
+<script src="js/courses-data.js"></script>
+<script src="js/courses.js"></script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
