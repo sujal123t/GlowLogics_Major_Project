@@ -18,6 +18,13 @@ let currentDisplayedCourses = [];
 let currentPage = 1;
 const coursesPerPage = 12;
 
+function loadStaticCourses() {
+    platformCourses = typeof courses !== "undefined" ? courses : [];
+    currentDisplayedCourses = platformCourses;
+    currentPage = 1;
+    renderPage();
+}
+
 async function fetchCourses() {
 
     try {
@@ -29,6 +36,10 @@ async function fetchCourses() {
                 `${window.API_BASE_URL || "http://localhost:8081/api"}/courses`
             );
 
+        if (!response.ok) {
+            throw new Error(`Courses API returned ${response.status}`);
+        }
+
         platformCourses =
             await response.json();
 
@@ -39,6 +50,7 @@ async function fetchCourses() {
     catch (error) {
 
         console.error(error);
+        loadStaticCourses();
     }
 }
 
