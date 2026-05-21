@@ -166,6 +166,9 @@ window.askAI = async function() {
     
     try {
         const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/courses`);
+        if (!res.ok) {
+            throw new Error(`Courses API returned ${res.status}`);
+        }
         const courses = await res.json();
         
         // Filter out punctuation and find matching keywords in the course database
@@ -184,7 +187,16 @@ window.askAI = async function() {
             history.scrollTop = history.scrollHeight;
         }, 600);
     } catch (e) {
-        history.innerHTML += `<p style="margin: 10px 0; text-align:left;"><span style="background:#e9ecef; color:#333; padding:8px 12px; border-radius:15px 15px 15px 0; display:inline-block; max-width:85%;">I am currently offline. Ensure your backend server is running!</span></p>`;
+        const fallbackCourses = typeof courses !== "undefined" ? courses : [];
+        const keywords = query.replace(/[^\w\s]/gi, '').split(" ").filter(k => k.length > 2);
+        const matches = fallbackCourses.filter(c =>
+            keywords.some(k => c.title.toLowerCase().includes(k) || c.category.toLowerCase().includes(k))
+        );
+        const reply = matches.length > 0
+            ? `Based on your request, I highly recommend checking out: **${matches[0].title}**! You can search for it in the Courses tab.`
+            : "I can still show course recommendations from the built-in catalog. Try searching the Courses page for web development, Java, cloud, or AI.";
+
+        history.innerHTML += `<p style="margin: 10px 0; text-align:left;"><span style="background:#e9ecef; color:#333; padding:8px 12px; border-radius:15px 15px 15px 0; display:inline-block; max-width:85%;">${reply}</span></p>`;
     }
 };
 
