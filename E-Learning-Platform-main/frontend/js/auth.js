@@ -27,7 +27,7 @@ if (signupForm) {
                 document.getElementById("signupPassword").value;
 
             try {
-                const response = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/users/signup", {
+                const response = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/users/signup`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, phoneNumber, password })
@@ -68,7 +68,7 @@ if (loginForm) {
                 document.getElementById("loginPassword").value;
 
             try {
-                const response = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/users/login", {
+                const response = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/users/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password })
@@ -107,7 +107,7 @@ window.handleGoogleLogin = async function(response) {
     };
 
     try {
-        const apiResponse = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/users/google", {
+        const apiResponse = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/users/google`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)

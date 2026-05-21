@@ -18,6 +18,12 @@ import java.io.ByteArrayOutputStream;
 @Service
 public class EmailService {
 
+    private static final Font TITLE_FONT = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 28, Color.BLACK);
+    private static final Font SUBTITLE_FONT = FontFactory.getFont(FontFactory.HELVETICA, 16, Color.DARK_GRAY);
+    private static final Font NAME_FONT = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 36, new Color(56, 189, 248));
+    private static final Font TEXT_FONT = FontFactory.getFont(FontFactory.HELVETICA, 14, Color.BLACK);
+    private static final Font COURSE_FONT = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK);
+
     @Autowired
     private JavaMailSender mailSender;
 
@@ -45,37 +51,31 @@ public class EmailService {
         PdfWriter.getInstance(document, baos);
         document.open();
 
-        // Set up professional fonts and colors
-        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 28, Color.BLACK);
-        Font subtitleFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Color.DARK_GRAY);
-        Font nameFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 36, new Color(56, 189, 248));
-        Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 14, Color.BLACK);
-
-        Paragraph title = new Paragraph("CERTIFICATE OF COMPLETION", titleFont);
+        Paragraph title = new Paragraph("CERTIFICATE OF COMPLETION", TITLE_FONT);
         title.setAlignment(Paragraph.ALIGN_CENTER);
         title.setSpacingAfter(30);
         document.add(title);
 
-        Paragraph subtitle = new Paragraph("This certificate is proudly awarded to", subtitleFont);
+        Paragraph subtitle = new Paragraph("This certificate is proudly awarded to", SUBTITLE_FONT);
         subtitle.setAlignment(Paragraph.ALIGN_CENTER);
         subtitle.setSpacingAfter(20);
         document.add(subtitle);
 
-        Paragraph name = new Paragraph(studentName, nameFont);
+        Paragraph name = new Paragraph(studentName, NAME_FONT);
         name.setAlignment(Paragraph.ALIGN_CENTER);
         name.setSpacingAfter(20);
         document.add(name);
 
-        Paragraph text = new Paragraph("for successfully completing the course:\n\n", textFont);
+        Paragraph text = new Paragraph("for successfully completing the course:\n\n", TEXT_FONT);
         text.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(text);
 
-        Paragraph course = new Paragraph(courseName, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK));
+        Paragraph course = new Paragraph(courseName, COURSE_FONT);
         course.setAlignment(Paragraph.ALIGN_CENTER);
         course.setSpacingAfter(50);
         document.add(course);
 
-        Paragraph footer = new Paragraph("Certificate Verification ID: " + certId + "\nAwarded by: Best Free Courses", textFont);
+        Paragraph footer = new Paragraph("Certificate Verification ID: " + certId + "\nAwarded by: Best Free Courses", TEXT_FONT);
         footer.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(footer);
 

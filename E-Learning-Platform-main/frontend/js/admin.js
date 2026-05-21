@@ -16,7 +16,7 @@ async function fetchCourses() {
 
         const response =
             await fetch(
-                "https://e-learning-platform-1-qohf.onrender.com/api/courses"
+                `${window.API_BASE_URL || "http://localhost:8081/api"}/courses`
             );
 
         platformCourses =
@@ -113,7 +113,7 @@ courseForm.addEventListener(
         try {
 
             await fetch(
-                "https://e-learning-platform-1-qohf.onrender.com/api/courses",
+                `${window.API_BASE_URL || "http://localhost:8081/api"}/courses`,
                 {
 
                     method: "POST",
@@ -156,7 +156,7 @@ async function deleteCourse(id) {
     try {
 
         await fetch(
-            `https://e-learning-platform-1-qohf.onrender.com/api/courses/${id}`,
+            `${window.API_BASE_URL || "http://localhost:8081/api"}/courses/${id}`,
             {
                 method: "DELETE"
             }
@@ -258,7 +258,7 @@ async function insertDemoCourses() {
         for (const course of demoCourses) {
 
             await fetch(
-                "https://e-learning-platform-1-qohf.onrender.com/api/courses",
+                `${window.API_BASE_URL || "http://localhost:8081/api"}/courses`,
                 {
 
                     method: "POST",
@@ -295,7 +295,7 @@ async function insertDemoCourses() {
 
 async function loadAdminStats() {
     try {
-        const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/admin/stats");
+        const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/admin/stats`);
         if (res.ok) {
             const stats = await res.json();
             document.getElementById("statUsers").innerText = stats.totalUsers;

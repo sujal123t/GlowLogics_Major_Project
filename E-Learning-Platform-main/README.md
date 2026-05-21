@@ -78,10 +78,13 @@ Ensure you have Java installed on your machine.
 
 ```bash
 # Navigate to the backend directory
-cd backend
+cd learningplatform
 
-# Run the Spring Boot application using Maven Wrapper
+# Run the Spring Boot application using Maven Wrapper (Linux/Mac/Git Bash)
 ./mvnw spring-boot:run
+
+# Run the Spring Boot application using Maven Wrapper (Windows PowerShell)
+.\mvnw spring-boot:run
 ```
 *The backend server will start on `http://localhost:8080`.*
 
@@ -114,4 +117,3 @@ cd frontend
 *Navigate to `http://localhost:3000` in your browser.*
 
 ---
-

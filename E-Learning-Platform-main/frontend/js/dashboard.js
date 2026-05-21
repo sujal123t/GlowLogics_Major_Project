@@ -15,7 +15,7 @@ let currentDashTab = 'progress';
 
 async function fetchDashboardCourses() {
     try {
-        const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/enrollments/user/${loggedInUser.id}`);
+        const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/enrollments/user/${loggedInUser.id}`);
         if (res.ok) {
             enrolledCoursesData = await res.json();
             displayDashboardCourses();

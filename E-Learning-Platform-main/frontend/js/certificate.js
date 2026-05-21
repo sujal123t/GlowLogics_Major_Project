@@ -50,7 +50,7 @@ if (certIdElement) {
     certIdElement.textContent = "CERT-" + Math.random().toString(36).substr(2, 10).toUpperCase();
 
     if (loggedInUser && completedCourse) {
-        fetch("https://e-learning-platform-1-qohf.onrender.com/api/enrollments/update", {
+        fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/enrollments/update`, {
             method: "PUT", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userId: loggedInUser.id, courseId: completedCourse.id, certificateId: certIdElement.textContent })
         });
@@ -75,7 +75,7 @@ async function emailCertificate() {
     };
 
     try {
-        const response = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/email/certificate", {
+        const response = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/email/certificate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -37,7 +37,7 @@
         
         resultDiv.innerHTML = "Checking database...";
         try {
-            const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/enrollments/verify/${certId}`);
+            const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/enrollments/verify/${certId}`);
             const data = await res.json();
             if (data.valid) {
                 resultDiv.innerHTML = `<span style="color: #28a745;">✅ <strong>Verified!</strong></span><br><br>Awarded to: <strong>${data.studentName}</strong><br>For: <strong>${data.courseName}</strong>`;
@@ -49,6 +49,3 @@
 </script>
 </body>
 </html>
-
-
-

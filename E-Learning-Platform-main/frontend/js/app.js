@@ -165,7 +165,7 @@ window.askAI = async function() {
     input.value = "";
     
     try {
-        const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/courses");
+        const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/courses`);
         const courses = await res.json();
         
         // Filter out punctuation and find matching keywords in the course database

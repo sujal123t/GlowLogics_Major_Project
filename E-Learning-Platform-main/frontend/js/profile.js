@@ -27,7 +27,7 @@ if (userBadges.length > 0) {
 // Fetch Learning Analytics
 async function fetchLearningStats() {
     try {
-        const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/enrollments/user/${loggedInUser.id}`);
+        const res = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/enrollments/user/${loggedInUser.id}`);
         if (res.ok) {
             const data = await res.json();
             document.getElementById("statEnrolled").textContent = data.length;
@@ -54,7 +54,7 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
     const newPhone = document.getElementById("profilePhone").value;
 
     try {
-        const response = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/users/${loggedInUser.id}`, {
+        const response = await fetch(`${window.API_BASE_URL || "http://localhost:8081/api"}/users/${loggedInUser.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: newName, phoneNumber: newPhone })

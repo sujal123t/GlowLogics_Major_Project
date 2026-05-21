@@ -1,0 +1,16 @@
+::1 - - [19/May/2026 01:12:35] "GET /index.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:14:23] "GET /index.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:19:44] "GET /courses.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:14] "GET /index.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:29] "GET /index.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:29] "GET /css/style.css HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:29] "GET /js/app.js HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:30] code 404, message File not found
+::1 - - [19/May/2026 01:21:30] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [19/May/2026 01:21:33] "GET /courses.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:33] "GET /js/courses-data.js HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:33] "GET /js/courses.js HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:47] "GET /login.html HTTP/1.1" 200 -
+::1 - - [19/May/2026 01:21:47] "GET /js/auth.js HTTP/1.1" 200 -
+::1 - - [19/May/2026 02:41:38] "GET /js/app.js HTTP/1.1" 304 -
+::1 - - [19/May/2026 02:41:38] "GET /js/courses.js HTTP/1.1" 304 -

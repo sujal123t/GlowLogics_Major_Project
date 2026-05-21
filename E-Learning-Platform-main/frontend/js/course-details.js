@@ -1,5 +1,7 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
+const API_BASE_URL = window.API_BASE_URL || "http://localhost:8081/api";
+
 const selectedCourseId =
     localStorage.getItem(
         "selectedCourseId"
@@ -66,14 +68,14 @@ async function fetchCourse() {
 
         const response =
             await fetch(
-                `https://e-learning-platform-1-qohf.onrender.com/api/courses/${selectedCourseId}`
+                `${API_BASE_URL}/courses/${selectedCourseId}`
             );
 
         selectedCourse =
             await response.json();
 
         if (loggedInUser) {
-            const enrollRes = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/enrollments/status?userId=${loggedInUser.id}&courseId=${selectedCourseId}`);
+            const enrollRes = await fetch(`${API_BASE_URL}/enrollments/status?userId=${loggedInUser.id}&courseId=${selectedCourseId}`);
             if (enrollRes.ok) {
                 currentEnrollment = await enrollRes.json();
             }
@@ -158,7 +160,7 @@ async function updateEnrollmentBackend(updates) {
     updates.userId = loggedInUser.id;
     updates.courseId = selectedCourse.id;
 
-    const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/enrollments/update", {
+    const res = await fetch(`${API_BASE_URL}/enrollments/update`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updates)
@@ -172,7 +174,7 @@ async function renderNotes() {
     if (!loggedInUser || !selectedCourse) return;
     const notesContainer = document.getElementById("notesContainer");
     try {
-        const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/notes/user/${loggedInUser.id}/course/${selectedCourse.id}`);
+        const res = await fetch(`${API_BASE_URL}/notes/user/${loggedInUser.id}/course/${selectedCourse.id}`);
         if (res.ok) {
             const notes = await res.json();
             notesContainer.innerHTML = notes.map(n => `
@@ -192,7 +194,7 @@ window.saveNote = async function() {
     const time = Math.floor(ytPlayer.getCurrentTime());
     
     try {
-        const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/notes", {
+        const res = await fetch(`${API_BASE_URL}/notes`, {
             method: "POST", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userId: loggedInUser.id, courseId: selectedCourse.id, videoTimestamp: time, content: content })
         });
@@ -213,7 +215,7 @@ async function renderQA() {
     const qaContainer = document.getElementById("qaContainer");
     if (!qaContainer || !selectedCourse) return;
     try {
-        const res = await fetch(`https://e-learning-platform-1-qohf.onrender.com/api/discussions/course/${selectedCourse.id}`);
+        const res = await fetch(`${API_BASE_URL}/discussions/course/${selectedCourse.id}`);
         qaContainer.innerHTML = ""; // Clear previous content
 
         if (res.ok) {
@@ -253,12 +255,91 @@ async function renderQA() {
     }
 }
 
+async function renderReviews() {
+    const ratingDisplay = document.getElementById("courseRatingDisplay");
+    const submitContainer = document.getElementById("submitReviewContainer");
+    const reviewsList = document.getElementById("reviewsList");
+
+    if (!ratingDisplay || !submitContainer || !reviewsList || !selectedCourse) return;
+
+    submitContainer.innerHTML = loggedInUser ? `
+        <div style="display: grid; gap: 10px; max-width: 520px;">
+            <select id="reviewRating" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+            </select>
+            <textarea id="reviewComment" placeholder="Share your review..." rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); resize: vertical;"></textarea>
+            <button onclick="submitReview()" style="padding: 10px 18px; border-radius: 8px; border: none; background: #0056d2; color: white; font-weight: bold; cursor: pointer;">Submit Review</button>
+        </div>
+    ` : `<p>Login to leave a review.</p>`;
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/reviews/course/${selectedCourse.id}`);
+        if (!res.ok) throw new Error("Could not load reviews");
+
+        const reviews = await res.json();
+        if (!reviews.length) {
+            ratingDisplay.textContent = "No ratings yet";
+            reviewsList.innerHTML = "<p>No reviews yet.</p>";
+            return;
+        }
+
+        const average = reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / reviews.length;
+        ratingDisplay.textContent = `${average.toFixed(1)} / 5 from ${reviews.length} review${reviews.length === 1 ? "" : "s"}`;
+        reviewsList.innerHTML = reviews.map(review => `
+            <div style="padding: 14px 0; border-bottom: 1px solid var(--border-color);">
+                <strong>${review.userName || "Student"}</strong>
+                <span style="color: #ffc107;">${"★".repeat(review.rating || 0)}${"☆".repeat(5 - (review.rating || 0))}</span>
+                <p style="margin-top: 8px;">${review.comment || ""}</p>
+            </div>
+        `).join("");
+    } catch (error) {
+        console.error(error);
+        ratingDisplay.textContent = "Could not load ratings";
+        reviewsList.innerHTML = "<p>Reviews are unavailable right now.</p>";
+    }
+}
+
+window.submitReview = async function() {
+    if (!loggedInUser) return showToast("Login to submit a review!", "error");
+
+    const rating = Number(document.getElementById("reviewRating").value);
+    const comment = document.getElementById("reviewComment").value.trim();
+
+    if (!comment) return showToast("Please write a short review.", "error");
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/reviews`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                courseId: selectedCourse.id,
+                userId: loggedInUser.id,
+                userName: loggedInUser.name,
+                rating,
+                comment
+            })
+        });
+
+        if (!res.ok) throw new Error("Could not submit review");
+
+        showToast("Review submitted!", "success");
+        renderReviews();
+    } catch (error) {
+        console.error(error);
+        showToast("Could not submit review. Try again.", "error");
+    }
+};
+
 window.postQuestion = async function() {
     if (!loggedInUser) return showToast("Login to post a question!", "error");
     const content = document.getElementById("qaInput").value;
     if (!content.trim()) return;
     try {
-        const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/discussions", {
+        const res = await fetch(`${API_BASE_URL}/discussions`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ courseId: selectedCourse.id, userId: loggedInUser.id, userName: loggedInUser.name, content: content })
@@ -342,7 +423,7 @@ window.toggleLesson = async function(lessonIndex, totalLessons) {
         loggedInUser.badges = JSON.stringify(userBadges);
         localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
         
-        fetch(`https://e-learning-platform-1-qohf.onrender.com/api/users/${loggedInUser.id}`, {
+        fetch(`${API_BASE_URL}/users/${loggedInUser.id}`, {
             method: "PUT", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ points: loggedInUser.points, badges: loggedInUser.badges })
         });
@@ -379,7 +460,7 @@ enrollBtn.addEventListener(
         }
 
         if (!currentEnrollment) {
-            const res = await fetch("https://e-learning-platform-1-qohf.onrender.com/api/enrollments/enroll", {
+            const res = await fetch(`${API_BASE_URL}/enrollments/enroll`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId: loggedInUser.id, courseId: selectedCourse.id })
